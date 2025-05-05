@@ -39,3 +39,4 @@ spec:
     # The retry feature is available since v1.7
     retry:
       limit: -1
+      refresh: True
