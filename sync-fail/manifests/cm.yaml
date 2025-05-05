@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMapXXX
+metadata:
+  name: example-config
+data:
+  app.properties: "key1=value1"
+  log.level: "debug"
