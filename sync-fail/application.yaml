@@ -7,6 +7,10 @@ metadata:
   labels:
     name: sync-fail
 spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
 
   # Source of the application manifests
   source:
@@ -30,6 +34,7 @@ spec:
     - PrunePropagationPolicy=foreground # Supported policies are background, foreground and orphan.
     - PruneLast=true # Allow the ability for resource pruning to happen as a final, implicit wave of a sync operation
     - SkipDryRunOnMissingResource=true # Allow skip dry run on missing resource
+    - CreateNamespace=true
 
     # The retry feature is available since v1.7
     retry:
