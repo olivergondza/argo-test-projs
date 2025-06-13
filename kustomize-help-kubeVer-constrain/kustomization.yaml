@@ -1,0 +1,7 @@
+helmCharts:
+  - name: linkerd2-cni
+    releaseName: linkerd2-cni
+    repo: https://github.com/olivergondza/argo-test-projs.git
+    chartHome: kustomize-help-kubeVer-constrain
+    version: 30.3.5
+    namespace: linkerd-cni 
