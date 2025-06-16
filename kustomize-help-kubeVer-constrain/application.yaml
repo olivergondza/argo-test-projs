@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kustomize-help-app
+  namespace: argocd # Assuming Argo CD is installed in the 'argocd' namespace
+spec:
+  project: default # Use the default Argo CD project
+
+  source:
+    repoURL: https://github.com/olivergondza/argo-test-projs.git
+    targetRevision: HEAD # Or specify a branch, tag, or commit SHA, e.g., 'main'
+    path: kustomize-help-kubeVer-constrain # The subdirectory containing the kustomization.yaml
+
+    # kustomize: {} # Uncomment and add kustomize options if needed, e.g., 'namePrefix', 'images'
+
+  destination:
+    server: https://kubernetes.default.svc # The default Kubernetes API server for in-cluster deployments
+    namespace: argocd
+
+  syncPolicy:
+    automated:
+      prune: true       # Allow Argo CD to delete resources that are no longer defined in Git
+      selfHeal: true    # Allow Argo CD to automatically sync changes if the live state drifts from Git
+    syncOptions:
+      - CreateNamespace=true # Ensures the target namespace is created if it does not exist
